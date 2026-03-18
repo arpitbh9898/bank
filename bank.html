@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Account</title>
+</head>
+<body>
+
+<h2>Bank Account System</h2>
+
+<input type="number" id="amount" placeholder="Enter amount">
+<br><br>
+
+<button onclick="deposit()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
+<button onclick="showBalance()">Check Balance</button>
+
+<h3 id="result"></h3>
+
+<script>
+    class BankAccount {
+        constructor(balance) {
+            this.balance = balance;
+        }
+
+        deposit(amount) {
+            this.balance += amount;
+            return "Deposited: " + amount;
+        }
+
+        withdraw(amount) {
+            if (amount <= this.balance) {
+                this.balance -= amount;
+                return "Withdrawn: " + amount;
+            } else {
+                return "Insufficient balance!";
+            }
+        }
+
+        showBalance() {
+            return "Current Balance: " + this.balance;
+        }
+    }
+
+    let acc = new BankAccount(1000);
+
+    function deposit() {
+        let amt = Number(document.getElementById("amount").value);
+        document.getElementById("result").innerText = acc.deposit(amt);
+    }
+
+    function withdraw() {
+        let amt = Number(document.getElementById("amount").value);
+        document.getElementById("result").innerText = acc.withdraw(amt);
+    }
+
+    function showBalance() {
+        document.getElementById("result").innerText = acc.showBalance();
+    }
+</script>
+
+</body>
+</html>
